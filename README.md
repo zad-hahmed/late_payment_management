@@ -14,7 +14,7 @@ Automated overdue invoice notifications with custom messaging for Odoo 18.
 1. Clone this repository into your Odoo addons directory
 2. Restart Odoo server
 3. Go to Apps → Update Apps List
-4. Search for "Late Payment Management" and install
+4. Search for "Payment Management" and install
 
 Usage
 
