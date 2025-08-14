@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="action_server_send_overdue_notices" model="ir.actions.server">
+            <field name="name">Send Overdue Payment Notices</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="state">code</field>
+            <field name="code">
+selected_ids = records.ids if records else None
+result = model.send_overdue_payment_notices(record_ids=selected_ids)
+
+if isinstance(result, dict) and result.get('type') == 'ir.actions.client':
+    action = result
+else:
+    action = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {
+            'title': 'Completed',
+            'message': 'Process completed',
+            'type': 'info',
+        }
+    }
+
+
+            </field>
+        </record>
+
+
+        <record id="ir_actions_server_send_overdue_notices_binding" model="ir.actions.server">
+            <field name="name">Send Overdue Payment Notices</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">
+
+result = model.send_overdue_payment_notices()
+
+if isinstance(result, dict) and result.get('type') == 'ir.actions.client':
+    action = result
+else:
+
+    action = {
+        'type': 'ir.actions.client',
+        'tag': 'display_notification',
+        'params': {
+            'title': 'Completed',
+            'message': 'Process completed',
+            'type': 'info',
+        }
+    }
+            </field>
+        </record>
+    </data>
+</odoo>
